@@ -19,7 +19,7 @@ def configureTemp():
             device_folder = glob.glob(base_dir + '28*')[0]
             break
         except IndexError:
-            sleep(0.5)
+            #sleep(0.5)
             continue
     device_file = device_folder + '/w1_slave'
     return device_file
@@ -42,7 +42,7 @@ def getTemp(device_file):
     def TemperaturAuswertung():
         lines = TemperaturMessung()
         while lines[0].strip()[-3:] != 'YES':
-            time.sleep(0.2)
+            #time.sleep(0.2)
             lines = TemperaturMessung()
         equals_pos = lines[1].find('t=')
         if equals_pos != -1:
@@ -50,14 +50,17 @@ def getTemp(device_file):
             temp_c = float(temp_string) / 1000.0
             return temp_c
 
+    temp = TemperaturAuswertung()
+    return temp
+
     # main program loop
     # The measured temperature will be displayed via console, between the measurements is a break.
     # The break time can be configured by the variable "sleeptime"
-    try:
-        while True:
-            print('---------------------------------------')
-            print("Temperature:", TemperaturAuswertung(), "°C")
-            time.sleep(sleeptime)
+    #try:
+        #while True:
+            #print('---------------------------------------')
+            #print("Temperature:", TemperaturAuswertung(), "°C")
+            #time.sleep(sleeptime)
 
-    except KeyboardInterrupt:
-        GPIO.cleanup()
+    #except KeyboardInterrupt:
+        #GPIO.cleanup()

@@ -1,2 +1,2 @@
 # StrainGageChair
-Strain based office chair with temperature compensation
+Strain based load measurement system with temperature compensation
